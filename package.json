@@ -5,11 +5,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run service:up && next dev",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
     "test": "jest",
-    "test:watch": "NODE_ENV=development jest --watchAll"
+    "test:watch": "NODE_ENV=development jest --watchAll",
+    "service:up": "docker compose -f infra/compose.yaml up -d",
+    "service:down": "docker compose -f infra/compose.yaml down",
+    "service:stop": "docker compose -f infra/compose.yaml stop"
   },
   "keywords": [],
   "author": "",
