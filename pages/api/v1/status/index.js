@@ -4,6 +4,7 @@ async function status(_, response) {
   const updatedAt = new Date().toISOString();
 
   const databaseVersionResult = await database.query("SHOW server_version");
+ 
   const [databaseVersionValue] = databaseVersionResult.rows;
 
   const databaseMaxConnections = await database.query("SHOW max_connections");
@@ -16,15 +17,13 @@ async function status(_, response) {
   });
   const databaseUsedConnectionsValue = databaseUsedConnections.rows[0].count;
 
-  console.log(databaseUsedConnectionsValue)
-
   response.status(200).json({
     updated_at: updatedAt,
     dependencies: {
       database: {
         version: databaseVersionValue.server_version,
-        max_connections: Number(databaseMaxConnectionsValue),
-        open_connections: databaseUsedConnectionsValue,
+        max_connections: parseInt(databaseMaxConnectionsValue),
+        opened_connections: databaseUsedConnectionsValue,
       },
     },
   });
