@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "dev": "npm run services:up && next dev",
     "services:up": "docker compose -f infra/compose.yaml up -d",
@@ -21,6 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "^16.6.1",
+    "dotenv-expand": "^11.0.6",
     "next": "^16.0.1",
     "node-pg-migrate": "^8.0.3",
     "pg": "^8.11.3",
