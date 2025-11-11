@@ -1,19 +1,14 @@
-import database from "../../../../infra/database";
+import database from "infra/database";
 import migrationRunner from "node-pg-migrate";
-import { join, resolve } from "node:path";
+import { join } from "node:path";
 
 export default async function migrations(request, response) {
   const dbClient = await database.getNewClient();
 
-  const migrationsDir =
-    process.env.NODE_ENV === "production"
-      ? resolve("infra", "migrations")
-      : join("infra", "migrations");
-
   const defaultMigrationOptions = {
     dbClient,
     dryRun: true,
-    dir: migrationsDir,
+    dir: join("infra", "migrations"),
     direction: "up",
     verbose: true,
     migrationsTable: "pgmigrations",
