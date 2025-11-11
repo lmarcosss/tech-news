@@ -12,6 +12,7 @@ export default async function migrations(request, response) {
     direction: "up",
     verbose: true,
     migrationsTable: "pgmigrations",
+    migrationsFileExtension: "cjs",
   };
 
   if (request.method === "GET") {
