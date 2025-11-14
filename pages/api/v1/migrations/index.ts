@@ -1,11 +1,11 @@
 import database from "infra/database";
-import migrationRunner from "node-pg-migrate";
+import migrationRunner, { RunnerOption } from "node-pg-migrate";
 import { join } from "node:path";
 
-const METHODS = {
-  GET: "GET",
-  POST: "POST",
-};
+enum METHODS {
+  GET = "GET",
+  POST = "POST",
+}
 
 const ALLOWED_METHODS = [METHODS.GET, METHODS.POST];
 
@@ -20,7 +20,7 @@ export default async function migrations(request, response) {
   try {
     dbClient = await database.getNewClient();
 
-    const defaultMigrationOptions = {
+    const defaultMigrationOptions: RunnerOption = {
       dbClient,
       dryRun: true,
       dir: join("infra", "migrations"),
