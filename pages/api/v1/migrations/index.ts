@@ -1,6 +1,6 @@
 import database from "@/infra/database";
 import { RunnerOption, runner as migrationRunner } from "node-pg-migrate";
-import { join } from "node:path";
+import { resolve } from "node:path";
 
 enum METHODS {
   GET = "GET",
@@ -23,7 +23,7 @@ export default async function migrations(request, response) {
     const defaultMigrationOptions: RunnerOption = {
       dbClient,
       dryRun: true,
-      dir: join("infra", "migrations"),
+      dir: resolve(process.cwd(), "infra", "migrations"),
       direction: "up",
       verbose: true,
       migrationsTable: "pgmigrations",
