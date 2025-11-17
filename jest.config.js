@@ -4,11 +4,15 @@ import dotenv from "dotenv";
 dotenv.config({ path: ".env.development" });
 
 const createJestConfig = nextJest({
-  dir: ".",
+  dir: "./",
 });
 
-const jestConfig = createJestConfig({
+/** @type {import('jest').Config} */
+const customJestConfig = {
   moduleDirectories: ["node_modules", "<rootDir>"],
-});
+  moduleNameMapper: {
+    "^infra/(.*)$": "<rootDir>/infra/$1",
+  },
+};
 
-export default jestConfig;
+export default createJestConfig(customJestConfig);
