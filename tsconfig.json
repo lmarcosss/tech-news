@@ -1,10 +1,8 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "infra/*": [
-        "./infra/*"
-      ]
+      "@/*": ["./*"],
     },
     "target": "ES2017",
     "lib": [
@@ -26,14 +24,13 @@
       "jest",
       "node"
     ],
-    "moduleResolution": "nodenext"
+    "moduleResolution": "NodeNext",
   },
    "include": [
     "next-env.d.ts",
+    ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx",
-    "tests/**/*.ts",
-    "infra/**/*.ts"
+    "**/*.tsx"
   ],
   "exclude": [
     "node_modules"

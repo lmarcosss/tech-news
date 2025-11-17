@@ -1,5 +1,5 @@
-import database from "infra/database";
-import migrationRunner, { RunnerOption } from "node-pg-migrate";
+import database from "@/infra/database";
+import { RunnerOption, runner as migrationRunner } from "node-pg-migrate";
 import { join } from "node:path";
 
 enum METHODS {
