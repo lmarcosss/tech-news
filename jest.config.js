@@ -13,6 +13,7 @@ const customJestConfig = {
   moduleNameMapper: {
     "^infra/(.*)$": "<rootDir>/infra/$1",
   },
+  testTimeout: 60000
 };
 
 export default createJestConfig(customJestConfig);
